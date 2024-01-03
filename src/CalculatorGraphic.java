@@ -5,95 +5,89 @@ import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/** Клас, що описує графічну складову калькулятора. */
+/** A class that describes the graphical component of the calculator. */
 public class CalculatorGraphic extends JFrame implements KeyListener {
-    private static final int WIDTH_BASIC = 420; // Ширина програми
-    private static final int WIDTH_STEM = 600; // Ширина програми
-    private static final int HEIGHT = 450; // Висота програми
+    private static final int WIDTH_BASIC = 420; // Program width
+    private static final int WIDTH_STEM = 600; // Program width
+    private static final int HEIGHT = 450; // Program height
 
-    /** Конструктор графічної складової калькулятора. */
+    /** Designer of the graphic component of the calculator. */
     CalculatorGraphic(int n){
-        super("Калькулятор"); // Створення вікна з назвою
+        super("Calculator"); // Creating a window with a name
 
-        getContentPane().setBackground(Color.BLACK); // Колір фону
+        getContentPane().setBackground(Color.BLACK); // Background color
 
-        setLayout(new BorderLayout()); // Менеджер розміщення компановки
+        setLayout(new BorderLayout()); // The manager of placement of the composition
 
-        setImageIcon("C:\\Program Files\\Java\\My projects\\Caclulator\\CalculatorFiles\\Images\\Icon.png"); // Встановлення іконки програми
-        setOutputInfo(); // Встановлення панелі виводу даних
+        setImageIcon("C:\\Program Files\\Java\\My projects\\Caclulator\\CalculatorFiles\\Images\\Icon.png"); // Installing the program icon
+        setOutputInfo(); // Setting up the output panel
 
-        // Створення панелі меню
+        // Creating a menu bar
         JPanel menuPanel = new JPanel(new FlowLayout());
         menuPanel.setBackground(Color.DARK_GRAY);
 
-        basic = new JButton("Стандартний");
+        basic = new JButton("Standard");
         basic.setBackground(Color.BLACK);
         basic.setForeground(Color.WHITE);
         basic.setFocusPainted(false);
 
-        stem = new JButton("Тригонометричний");
+        stem = new JButton("Trigonometric");
         stem.setBackground(Color.BLACK);
         stem.setForeground(Color.WHITE);
         stem.setFocusPainted(false);
 
         switch (n) {
-            case 1:
-                setSize(WIDTH_BASIC, HEIGHT); // Розмір вікна
-                int x = (Toolkit.getDefaultToolkit().getScreenSize().width - WIDTH_BASIC) / 2; // Розміщення по х
-                int y = (Toolkit.getDefaultToolkit().getScreenSize().height - HEIGHT) / 2; // Розміщення по у
-                setLocation(x, y); // Задання локації
-
-                setFunctionalPanelBasic(); // Встановлення функціональної панелі
-
-                setMinimumSize(new Dimension(WIDTH_BASIC, HEIGHT)); // Мінімальний розмір
-
+            case 1 -> {
+                setSize(WIDTH_BASIC, HEIGHT); // Window size
+                int x = (Toolkit.getDefaultToolkit().getScreenSize().width - WIDTH_BASIC) / 2; // Placement on x
+                int y = (Toolkit.getDefaultToolkit().getScreenSize().height - HEIGHT) / 2; // Placement on у
+                setLocation(x, y); // Setting the location
+                setFunctionalPanelBasic(); // Installation of the functional panel
+                setMinimumSize(new Dimension(WIDTH_BASIC, HEIGHT)); // Minimum size
                 stem.addActionListener(e -> {
                     this.setVisible(false);
                     new CalculatorGraphic(2);
                 });
-                break;
-            case 2:
-                setSize(WIDTH_STEM, HEIGHT); // Розмір вікна
-                x = (Toolkit.getDefaultToolkit().getScreenSize().width - WIDTH_STEM) / 2; // Розміщення по х
-                y = (Toolkit.getDefaultToolkit().getScreenSize().height - HEIGHT) / 2; // Розміщення по у
-                setLocation(x, y); // Задання локації
-
-                setFunctionalPanelStem(); // Встановлення функціональної панелі
-
-                setMinimumSize(new Dimension(WIDTH_STEM, HEIGHT)); // Мінімальний розмір
-
+            }
+            case 2 -> {
+                setSize(WIDTH_STEM, HEIGHT); // Window size
+                int x = (Toolkit.getDefaultToolkit().getScreenSize().width - WIDTH_STEM) / 2; // Placement on x
+                int y = (Toolkit.getDefaultToolkit().getScreenSize().height - HEIGHT) / 2; // Placement on y
+                setLocation(x, y); // Setting the location
+                setFunctionalPanelStem(); // Installation of the functional panel
+                setMinimumSize(new Dimension(WIDTH_STEM, HEIGHT)); // Minimum size
                 basic.addActionListener(e -> {
                     this.setVisible(false);
                     new CalculatorGraphic(1);
                 });
-                break;
+            }
         }
 
         menuPanel.add(basic);
         menuPanel.add(stem);
         add(menuPanel, BorderLayout.NORTH);
 
-        setFocusable(true); // Фокусація
+        setFocusable(true); // Focusing
         requestFocus();
 
-        addKeyListener(this); // Слухач клавіш
+        addKeyListener(this); // Key listener
 
-        pack(); // Налаштування розміщення
+        pack(); // Placement settings
 
         setVisible(true);
     }
 
-    /** Метод, який встановлює іконку програми. */
+    /** A method that sets the application icon. */
     private void setImageIcon(String imageName){
         ImageIcon icon = new ImageIcon(imageName);
         setIconImage(icon.getImage());
     }
 
-    /** Метод, який налаштовує панель виводу даних в калькуляторі. */
+    /** A method that configures the calculator output panel. */
     private void setOutputInfo(){
         outputInfo = new JLabel("0");
-        outputInfo.setHorizontalAlignment(SwingConstants.RIGHT); // текст по правому краю
-        outputInfo.setVerticalAlignment(SwingConstants.BOTTOM); // текст по нижньому краю
+        outputInfo.setHorizontalAlignment(SwingConstants.RIGHT); // text on the right edge
+        outputInfo.setVerticalAlignment(SwingConstants.BOTTOM); // text on the bottom edge
         outputInfo.setFont(new Font("Arial", Font.PLAIN, 60));
         outputInfo.setForeground(Color.WHITE);
         add(outputInfo, BorderLayout.CENTER);
@@ -147,13 +141,13 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {}
 
-    /** Метод, який створює стандартну функціональну панель внизу програми. */
+    /** A method that creates a standard toolbar at the bottom of the application. */
     private void setFunctionalPanelBasic(){
-        JPanel panel = new JPanel(); // Оголошуємо панель
+        JPanel panel = new JPanel(); // Announcing the panel
         panel.setBackground(Color.DARK_GRAY);
         panel.setLayout(new GridLayout(6, 4));
 
-        JButton btn0 = new JButton("0"); // Створюємо кнопки
+        JButton btn0 = new JButton("0"); // We create buttons
         btn0.setForeground(Color.WHITE);
         btn0.setBackground(Color.BLACK);
         btn0.setFont(new Font("Arial", Font.PLAIN, 21));
@@ -496,64 +490,64 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             }
         });
 
-        addComponentListener(new ComponentListener() { // Зміна розміру шрифту в залежності від розміру вікна програми
+        addComponentListener(new ComponentListener() { // Changing the font size depending on the size of the program window
             @Override
             public void componentResized(ComponentEvent e) {
                 if(getWidth() < getHeight()) {
-                    int newFontSize1 = e.getComponent().getWidth() / 15; // Налаштування розміру шрифту
-                    Font font1 = new Font("Arial", Font.PLAIN, newFontSize1); // Новий шрифт
-                    btn0.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn1.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn2.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn3.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn4.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn5.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn6.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn7.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn8.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn9.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPlus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPlus_Minus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnMinus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnMulti.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnDelete.setFont(new Font("Arial", Font.PLAIN, e.getComponent().getWidth() / 20)); // Зміна шрифту кнопки панелі
-                    btnDivide.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPercent.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPow.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPoint.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnCE.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnClean.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnEqual.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnOneOfSomething.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnRoot.setFont(font1); // Зміна шрифту кнопки панелі
+                    int newFontSize1 = e.getComponent().getWidth() / 15; // Set the font size
+                    Font font1 = new Font("Arial", Font.PLAIN, newFontSize1); // New font
+                    btn0.setFont(font1); // Changing the panel button font
+                    btn1.setFont(font1);
+                    btn2.setFont(font1);
+                    btn3.setFont(font1);
+                    btn4.setFont(font1);
+                    btn5.setFont(font1);
+                    btn6.setFont(font1);
+                    btn7.setFont(font1);
+                    btn8.setFont(font1);
+                    btn9.setFont(font1);
+                    btnPlus.setFont(font1);
+                    btnPlus_Minus.setFont(font1);
+                    btnMinus.setFont(font1);
+                    btnMulti.setFont(font1);
+                    btnDelete.setFont(new Font("Arial", Font.PLAIN, e.getComponent().getWidth() / 20));
+                    btnDivide.setFont(font1);
+                    btnPercent.setFont(font1);
+                    btnPow.setFont(font1);
+                    btnPoint.setFont(font1);
+                    btnCE.setFont(font1);
+                    btnClean.setFont(font1);
+                    btnEqual.setFont(font1);
+                    btnOneOfSomething.setFont(font1);
+                    btnRoot.setFont(font1);
                 }
                 else {
-                    int newFontSize1 = e.getComponent().getHeight() / 15; // Налаштування розміру шрифту
-                    Font font1 = new Font("Arial", Font.PLAIN, newFontSize1); // Новий шрифт
-                    btn0.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn1.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn2.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn3.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn4.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn5.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn6.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn7.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn8.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn9.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPlus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPlus_Minus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnMinus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnMulti.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnDelete.setFont(new Font("Arial", Font.PLAIN, e.getComponent().getHeight() / 20)); // Зміна шрифту кнопки панелі
-                    btnDivide.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPercent.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPow.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPoint.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnCE.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnClean.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnEqual.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnOneOfSomething.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnRoot.setFont(font1); // Зміна шрифту кнопки панелі
+                    int newFontSize1 = e.getComponent().getHeight() / 15; // Set the font size
+                    Font font1 = new Font("Arial", Font.PLAIN, newFontSize1);// New font
+                    btn0.setFont(font1); // Changing the panel button font
+                    btn1.setFont(font1);
+                    btn2.setFont(font1);
+                    btn3.setFont(font1);
+                    btn4.setFont(font1);
+                    btn5.setFont(font1);
+                    btn6.setFont(font1);
+                    btn7.setFont(font1);
+                    btn8.setFont(font1);
+                    btn9.setFont(font1);
+                    btnPlus.setFont(font1);
+                    btnPlus_Minus.setFont(font1);
+                    btnMinus.setFont(font1);
+                    btnMulti.setFont(font1);
+                    btnDelete.setFont(new Font("Arial", Font.PLAIN, e.getComponent().getHeight() / 20));
+                    btnDivide.setFont(font1);
+                    btnPercent.setFont(font1);
+                    btnPow.setFont(font1);
+                    btnPoint.setFont(font1);
+                    btnCE.setFont(font1);
+                    btnClean.setFont(font1);
+                    btnEqual.setFont(font1);
+                    btnOneOfSomething.setFont(font1);
+                    btnRoot.setFont(font1);
                 }
             }
             @Override
@@ -564,7 +558,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             public void componentHidden(ComponentEvent e) {}
         });
 
-        panel.add(btnPercent); // Додаємо кнопки до функціональної панелі
+        panel.add(btnPercent); // Add buttons to the function panel
         panel.add(btnCE);
         panel.add(btnClean);
         panel.add(btnDelete);
@@ -589,16 +583,16 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         panel.add(btnPoint);
         panel.add(btnEqual);
 
-        add(panel, BorderLayout.SOUTH); // Додаємо панель до вікна програми
+        add(panel, BorderLayout.SOUTH); // Add a panel to the program window
     }
 
-    /** Метод, який створює тригонометричну функціональну панель внизу програми. */
+    /** A method that creates a trigonometric function panel at the bottom of the application. */
     private void setFunctionalPanelStem(){
-            JPanel panel = new JPanel(); // Оголошуємо панель
+            JPanel panel = new JPanel(); // Declare the panel
             panel.setBackground(Color.DARK_GRAY);
             panel.setLayout(new GridLayout(6, 5));
 
-            JButton btn0 = new JButton("0"); // Створюємо кнопки
+            JButton btn0 = new JButton("0"); // Create buttons
             btn0.setForeground(Color.WHITE);
             btn0.setBackground(Color.BLACK);
             btn0.setFont(new Font("Arial", Font.PLAIN, 21));
@@ -1028,64 +1022,64 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             }
         });
 
-        addComponentListener(new ComponentListener() { // Зміна розміру шрифту в залежності від розміру вікна програми
+        addComponentListener(new ComponentListener() { // Changing the font size depending on the size of the program window
             @Override
             public void componentResized(ComponentEvent e) {
                 if(getWidth() < getHeight()) {
-                    int newFontSize1 = e.getComponent().getWidth() / 15; // Налаштування розміру шрифту
-                    Font font1 = new Font("Arial", Font.PLAIN, newFontSize1); // Новий шрифт
-                    btn0.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn1.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn2.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn3.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn4.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn5.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn6.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn7.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn8.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn9.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPlus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPlus_Minus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnMinus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnMulti.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnDelete.setFont(new Font("Arial", Font.PLAIN, e.getComponent().getWidth() / 20)); // Зміна шрифту кнопки панелі
-                    btnDivide.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPercent.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPow.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPoint.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnCE.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnClean.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnEqual.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnOneOfSomething.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnRoot.setFont(font1); // Зміна шрифту кнопки панелі
+                    int newFontSize1 = e.getComponent().getWidth() / 15; // Set the font size
+                    Font font1 = new Font("Arial", Font.PLAIN, newFontSize1); // New font
+                    btn0.setFont(font1); // Change panel button font
+                    btn1.setFont(font1);
+                    btn2.setFont(font1);
+                    btn3.setFont(font1);
+                    btn4.setFont(font1);
+                    btn5.setFont(font1);
+                    btn6.setFont(font1);
+                    btn7.setFont(font1);
+                    btn8.setFont(font1);
+                    btn9.setFont(font1);
+                    btnPlus.setFont(font1);
+                    btnPlus_Minus.setFont(font1);
+                    btnMinus.setFont(font1);
+                    btnMulti.setFont(font1);
+                    btnDelete.setFont(new Font("Arial", Font.PLAIN, e.getComponent().getWidth() / 20));
+                    btnDivide.setFont(font1);
+                    btnPercent.setFont(font1);
+                    btnPow.setFont(font1);
+                    btnPoint.setFont(font1);
+                    btnCE.setFont(font1);
+                    btnClean.setFont(font1);
+                    btnEqual.setFont(font1);
+                    btnOneOfSomething.setFont(font1);
+                    btnRoot.setFont(font1);
                 }
                 else {
-                    int newFontSize1 = e.getComponent().getHeight() / 15; // Налаштування розміру шрифту
-                    Font font1 = new Font("Arial", Font.PLAIN, newFontSize1); // Новий шрифт
-                    btn0.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn1.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn2.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn3.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn4.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn5.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn6.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn7.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn8.setFont(font1); // Зміна шрифту кнопки панелі
-                    btn9.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPlus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPlus_Minus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnMinus.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnMulti.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnDelete.setFont(new Font("Arial", Font.PLAIN, e.getComponent().getHeight() / 20)); // Зміна шрифту кнопки панелі
-                    btnDivide.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPercent.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPow.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnPoint.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnCE.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnClean.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnEqual.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnOneOfSomething.setFont(font1); // Зміна шрифту кнопки панелі
-                    btnRoot.setFont(font1); // Зміна шрифту кнопки панелі
+                    int newFontSize1 = e.getComponent().getHeight() / 15; // Set the font size
+                    Font font1 = new Font("Arial", Font.PLAIN, newFontSize1); // New font
+                    btn0.setFont(font1); // Change panel button font
+                    btn1.setFont(font1);
+                    btn2.setFont(font1);
+                    btn3.setFont(font1);
+                    btn4.setFont(font1);
+                    btn5.setFont(font1);
+                    btn6.setFont(font1);
+                    btn7.setFont(font1);
+                    btn8.setFont(font1);
+                    btn9.setFont(font1);
+                    btnPlus.setFont(font1);
+                    btnPlus_Minus.setFont(font1);
+                    btnMinus.setFont(font1);
+                    btnMulti.setFont(font1);
+                    btnDelete.setFont(new Font("Arial", Font.PLAIN, e.getComponent().getHeight() / 20));
+                    btnDivide.setFont(font1);
+                    btnPercent.setFont(font1);
+                    btnPow.setFont(font1);
+                    btnPoint.setFont(font1);
+                    btnCE.setFont(font1);
+                    btnClean.setFont(font1);
+                    btnEqual.setFont(font1);
+                    btnOneOfSomething.setFont(font1);
+                    btnRoot.setFont(font1);
                 }
             }
             @Override
@@ -1096,7 +1090,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             public void componentHidden(ComponentEvent e) {}
         });
 
-        panel.add(btnE); // Додаємо кнопки до функціональної панелі
+        panel.add(btnE); // Add buttons to the function panel
         panel.add(btnPercent);
         panel.add(btnCE);
         panel.add(btnClean);
@@ -1127,12 +1121,12 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         panel.add(btnPoint);
         panel.add(btnEqual);
 
-        add(panel, BorderLayout.SOUTH); // Додаємо панель до вікна програми
+        add(panel, BorderLayout.SOUTH); // Add a panel to the program window
     }
 
-    private final CalculatorSystem cs = new CalculatorSystem(); // Створення об'єкта калькулятора для здійснення математичних операцій
-    public JLabel outputInfo; // Поле з виводом
-    private double num1, num2; // Число, яке ввели перед/після натисканням кнопки оператора
-    private boolean dividePressed, percentPressed, multiPressed, minusPressed, plusPressed = false; // Чи була натиснута кнопка "-", "%", "+", "-", "+"
+    private final CalculatorSystem cs = new CalculatorSystem(); // Create a calculator object for performing mathematical operations
+    public JLabel outputInfo; // Output field
+    private double num1, num2; // The number entered before/after the operator button was pressed
+    private boolean dividePressed, percentPressed, multiPressed, minusPressed, plusPressed = false; // Was the "-", "%", "+" button pressed
     public JButton basic, stem;
 }
