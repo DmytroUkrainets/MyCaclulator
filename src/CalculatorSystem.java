@@ -13,7 +13,7 @@ public class CalculatorSystem {
      * @param num2 The second number
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String addition(double num1, double num2){
+    public String addition(double num1, double num2) {
         double res = num1 + num2;
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -63,7 +63,7 @@ public class CalculatorSystem {
             double res = Math.sqrt(num);
             if (isInteger(res)) return "" + (int) res;
             else return "" + decimalFormat.format(res).replace(',', '.');
-        }else return "Not specified!";
+        } else return "Not specified!";
     }
 
     /** A method that returns the string that is the result of dividing one by a number.
@@ -75,7 +75,7 @@ public class CalculatorSystem {
             double res = 1 / num;
             if (isInteger(res)) return "" + (int) res;
             else return "" + decimalFormat.format(res).replace(',', '.');
-        }else return "Error!";
+        } else return "Error!";
     }
 
     /** A method that returns the string that is the result of raising a number to the second power.

@@ -12,14 +12,14 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
     private static final int HEIGHT = 450; // Program height
 
     /** Designer of the graphic component of the calculator. */
-    CalculatorGraphic(int n){
+    CalculatorGraphic(int n) {
         super("Calculator"); // Creating a window with a name
 
         getContentPane().setBackground(Color.BLACK); // Background color
 
         setLayout(new BorderLayout()); // The manager of placement of the composition
 
-        setImageIcon("C:\\Program Files\\Java\\My projects\\Caclulator\\CalculatorFiles\\Images\\Icon.png"); // Installing the program icon
+        setImageIcon("CalculatorFiles\\Images\\Icon.png"); // Installing the program icon
         setOutputInfo(); // Setting up the output panel
 
         // Creating a menu bar
@@ -52,7 +52,8 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             case 2 -> {
                 setSize(WIDTH_STEM, HEIGHT); // Window size
                 int x = (Toolkit.getDefaultToolkit().getScreenSize().width - WIDTH_STEM) / 2; // Placement on x
-                int y = (Toolkit.getDefaultToolkit().getScreenSize().height - HEIGHT) / 2; // Placement on y
+                int
+                        y = (Toolkit.getDefaultToolkit().getScreenSize().height - HEIGHT) / 2; // Placement on y
                 setLocation(x, y); // Setting the location
                 setFunctionalPanelStem(); // Installation of the functional panel
                 setMinimumSize(new Dimension(WIDTH_STEM, HEIGHT)); // Minimum size
