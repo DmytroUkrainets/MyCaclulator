@@ -1,3 +1,5 @@
+package org.example;
+
 import java.text.DecimalFormat;
 
 /** A class that performs mathematical operations of the calculator. */
