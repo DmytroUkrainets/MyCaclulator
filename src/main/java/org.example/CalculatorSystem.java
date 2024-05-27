@@ -15,7 +15,7 @@ public class CalculatorSystem {
      * @param num2 The second number
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String addition(double num1, double num2) {
+    public static String addition(double num1, double num2) {
         double res = num1 + num2;
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -26,7 +26,7 @@ public class CalculatorSystem {
      * @param num2 The second number
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String subtraction(double num1, double num2){
+    public static String subtraction(double num1, double num2){
         double res = num1 - num2;
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -37,7 +37,7 @@ public class CalculatorSystem {
      * @param num2 The second number
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String multiplication(double num1, double num2){
+    public static String multiplication(double num1, double num2){
         double res = num1 * num2;
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -48,7 +48,7 @@ public class CalculatorSystem {
      * @param num2 The second number
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String dividing(double num1, double num2){
+    public static String dividing(double num1, double num2){
         if (num2 != 0) {
             double res = num1 / num2;
             if (isInteger(res)) return "" + (int) res;
@@ -60,7 +60,7 @@ public class CalculatorSystem {
      * @param num The number from which the root is taken
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String getRoot(double num){
+    public static String getRoot(double num){
         if(num >= 0) {
             double res = Math.sqrt(num);
             if (isInteger(res)) return "" + (int) res;
@@ -72,7 +72,7 @@ public class CalculatorSystem {
      * @param num The number by which the unit is divided
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String getOneOfSomething(double num){
+    public static String getOneOfSomething(double num){
         if(num != 0) {
             double res = 1 / num;
             if (isInteger(res)) return "" + (int) res;
@@ -84,7 +84,7 @@ public class CalculatorSystem {
      * @param num A number raised to the second power
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String getPower(double num){
+    public static String getPower(double num){
         double res = Math.pow(num, 2.0);
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -95,7 +95,7 @@ public class CalculatorSystem {
      * @param num2 A number that specifies a percentage of a number
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String getPercent(double num1, double num2){
+    public static String getPercent(double num1, double num2){
         double res = (num1 * num2) / 100.0;
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -105,7 +105,7 @@ public class CalculatorSystem {
      * @param num Angle
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String getSin(double num){
+    public static String getSin(double num){
         double res = Math.sin(Math.toRadians(num));
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -115,7 +115,7 @@ public class CalculatorSystem {
      * @param num Angle
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String getCos(double num){
+    public static String getCos(double num){
         double res = Math.cos(Math.toRadians(num));
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -125,7 +125,7 @@ public class CalculatorSystem {
      * @param num Angle
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String getTg(double num){
+    public static String getTg(double num){
         double res = Math.tan(Math.toRadians(num));
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
@@ -135,11 +135,11 @@ public class CalculatorSystem {
      * @param num Angle
      * @return If the result is an integer, the output is an int number, otherwise - double.
      */
-    public String getCtg(double num){
+    public static String getCtg(double num){
         double res = 1 / Math.tan(Math.toRadians(num));
         if (isInteger(res)) return "" + (int) res;
         else return "" + decimalFormat.format(res).replace(',', '.');
     }
 
-    private final DecimalFormat decimalFormat = new DecimalFormat("#.###"); // Rounding the number to thousands
+    private static final DecimalFormat decimalFormat = new DecimalFormat("#.###"); // Rounding the number to thousands
 }
