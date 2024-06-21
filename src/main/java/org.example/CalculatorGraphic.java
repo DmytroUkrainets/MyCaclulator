@@ -25,7 +25,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
 
         setLayout(new BorderLayout()); // The manager of placement of the composition
 
-        setImageIcon("CalculatorFiles\\Images\\Icon.png"); // Installing the program icon
+        setImageIcon(); // Installing the program icon
         setOutputInfo(); // Setting up the output panel
 
         // Creating a menu bar
@@ -87,8 +87,8 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
     /**
      * A method that sets the application icon.
      */
-    private void setImageIcon(String imageName) {
-        ImageIcon icon = new ImageIcon(imageName);
+    private void setImageIcon() {
+        ImageIcon icon = new ImageIcon("CalculatorFiles\\Images\\Icon.png");
         setIconImage(icon.getImage());
     }
 
@@ -393,7 +393,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             if (plusPressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.addition(num1, num2));
+                    outputInfo.setText(CalculatorSystem.addition(num1, num2));
                     plusPressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -401,7 +401,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             } else if (minusPressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.subtraction(num1, num2));
+                    outputInfo.setText(CalculatorSystem.subtraction(num1, num2));
                     minusPressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -409,7 +409,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             } else if (multiPressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.multiplication(num1, num2));
+                    outputInfo.setText(CalculatorSystem.multiplication(num1, num2));
                     multiPressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -417,7 +417,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             } else if (dividePressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.dividing(num1, num2));
+                    outputInfo.setText(CalculatorSystem.dividing(num1, num2));
                     dividePressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -425,7 +425,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             } else if (percentPressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.getPercent(num1, num2));
+                    outputInfo.setText(CalculatorSystem.getPercent(num1, num2));
                     dividePressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -483,9 +483,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnCE.setBackground(Color.BLACK);
         btnCE.setFont(new Font("Arial", Font.PLAIN, 21));
         btnCE.setFocusPainted(false);
-        btnCE.addActionListener(e -> {
-            outputInfo.setText("0");
-        });
+        btnCE.addActionListener(e -> outputInfo.setText("0"));
 
         JButton btnRoot = new JButton("√");
         btnRoot.setForeground(Color.WHITE);
@@ -494,7 +492,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnRoot.setFocusPainted(false);
         btnRoot.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getRoot(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getRoot(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -507,7 +505,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnPow.setFocusPainted(false);
         btnPow.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getPower(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getPower(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -520,7 +518,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnOneOfSomething.setFocusPainted(false);
         btnOneOfSomething.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getOneOfSomething(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getOneOfSomething(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -854,7 +852,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             if (plusPressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.addition(num1, num2));
+                    outputInfo.setText(CalculatorSystem.addition(num1, num2));
                     plusPressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -862,7 +860,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             } else if (minusPressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.subtraction(num1, num2));
+                    outputInfo.setText(CalculatorSystem.subtraction(num1, num2));
                     minusPressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -870,7 +868,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             } else if (multiPressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.multiplication(num1, num2));
+                    outputInfo.setText(CalculatorSystem.multiplication(num1, num2));
                     multiPressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -878,7 +876,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             } else if (dividePressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.dividing(num1, num2));
+                    outputInfo.setText(CalculatorSystem.dividing(num1, num2));
                     dividePressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -886,7 +884,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
             } else if (percentPressed) {
                 try {
                     num2 = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.getPercent(num1, num2));
+                    outputInfo.setText(CalculatorSystem.getPercent(num1, num2));
                     dividePressed = false;
                 } catch (NumberFormatException nfe) {
                     outputInfo.setText("0");
@@ -944,9 +942,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnCE.setBackground(Color.BLACK);
         btnCE.setFont(new Font("Arial", Font.PLAIN, 21));
         btnCE.setFocusPainted(false);
-        btnCE.addActionListener(e -> {
-            outputInfo.setText("0");
-        });
+        btnCE.addActionListener(e -> outputInfo.setText("0"));
 
         JButton btnRoot = new JButton("√");
         btnRoot.setForeground(Color.WHITE);
@@ -955,7 +951,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnRoot.setFocusPainted(false);
         btnRoot.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getRoot(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getRoot(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -968,7 +964,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnPow.setFocusPainted(false);
         btnPow.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getPower(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getPower(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -981,7 +977,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnOneOfSomething.setFocusPainted(false);
         btnOneOfSomething.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getOneOfSomething(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getOneOfSomething(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -998,7 +994,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
                     outputInfo.setText("2.718");
                 else {
                     double num = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.multiplication(num, Math.E));
+                    outputInfo.setText(CalculatorSystem.multiplication(num, Math.E));
                 }
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
@@ -1016,7 +1012,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
                     outputInfo.setText("3.141");
                 else {
                     double num = Double.parseDouble(outputInfo.getText());
-                    outputInfo.setText(cs.multiplication(num, Math.PI));
+                    outputInfo.setText(CalculatorSystem.multiplication(num, Math.PI));
                 }
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
@@ -1030,7 +1026,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnSin.setFocusPainted(false);
         btnSin.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getSin(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getSin(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -1043,7 +1039,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnCos.setFocusPainted(false);
         btnCos.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getCos(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getCos(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -1056,7 +1052,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnTg.setFocusPainted(false);
         btnTg.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getTg(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getTg(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -1069,7 +1065,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         btnCtg.setFocusPainted(false);
         btnCtg.addActionListener(e -> {
             try {
-                outputInfo.setText(cs.getCtg(Double.parseDouble(outputInfo.getText())));
+                outputInfo.setText(CalculatorSystem.getCtg(Double.parseDouble(outputInfo.getText())));
             } catch (NumberFormatException nfe) {
                 outputInfo.setText("0");
             }
@@ -1182,7 +1178,7 @@ public class CalculatorGraphic extends JFrame implements KeyListener {
         add(panel, BorderLayout.SOUTH); // Add a panel to the program window
     }
 
-    private final CalculatorSystem cs = new CalculatorSystem(); // Create a calculator object for performing mathematical operations
+    // Create a calculator object for performing mathematical operations
     public JLabel outputInfo; // Output field
     private double num1, num2; // The number entered before/after the operator button was pressed
     private boolean dividePressed, percentPressed, multiPressed, minusPressed, plusPressed = false; // Was the "-", "%", "+" button pressed
